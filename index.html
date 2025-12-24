@@ -1,0 +1,296 @@
+<!doctype html>
+<html lang="pt-BR" xmlns:https="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>Gustavo Wacker — Currículo Futurista</title>
+    <style>
+        /* ---------- BASE ---------- */
+        :root{
+            --bg1: #0f0f2b;
+            --bg2: #0f0f2b;
+            --glass:rgba(255,255,255,0.04);
+            --neon-cyan: #ededf1;
+            --neon-purple: #ededf1;
+            --muted:#9fb0c8;
+            --card-gradient: linear-gradient(135deg, rgba(255,255,255,0.03), rgba(255,255,255,0.01));
+            --glass-border: rgba(255,255,255,0.06);
+        }
+        *{box-sizing:border-box}
+        html,body{height:100%;margin:0;font-family:Inter,system-ui,Roboto,Arial;background:
+                radial-gradient(1200px 600px at 10% 10%, rgba(138,92,255,0.06), transparent 10%),
+                radial-gradient(800px 400px at 90% 80%, rgba(0,240,255,0.04), transparent 15%),
+                linear-gradient(180deg,var(--bg1),var(--bg2));
+            color:#e6f3ff;-webkit-font-smoothing:antialiased}
+        a{color:inherit;text-decoration:none}
+
+        /* ---------- LAYOUT ---------- */
+        .wrap{max-width:1100px;margin:36px auto;padding:28px}
+        .grid{display:grid;grid-template-columns:320px 1fr;gap:28px;align-items:start}
+        @media(max-width:880px){.grid{grid-template-columns:1fr}}
+
+        /* ---------- SIDEBAR (GLASS) ---------- */
+        .card{
+            background:var(--card-gradient);
+            border-radius:16px;
+            padding:20px;
+            border:1px solid var(--glass-border);
+            box-shadow:0 10px 40px rgba(2,8,20,0.6);
+            backdrop-filter: blur(8px) saturate(120%);
+            position:relative;
+            overflow:hidden;
+        }
+
+        /* subtle scan lines */
+        .card::before{
+            content:"";position:absolute;inset:0;pointer-events:none;
+            background-image:linear-gradient(transparent 92%, rgba(255,255,255,0.003) 93%);
+            mix-blend-mode:overlay;opacity:0.7;
+        }
+
+        .photo {
+            width:220px;height:280px;margin:0 auto;border-radius:12px;overflow:hidden;
+            border:2px solid rgba(255,255,255,0.04);
+            box-shadow:0 6px 30px rgba(0,0,0,0.6), inset 0 2px 10px rgba(255,255,255,0.01);
+            background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
+            .photo {
+
+
+            }
+
+
+        }
+
+
+        .contact{margin-top:18px;color:var(--muted);font-size:14px;line-height:1.5}
+        .contact .line{display:flex;gap:10px;align-items:center}
+        .badge{
+            display:inline-block;padding:6px 10px;border-radius:999px;background:linear-gradient(90deg, rgba(138,92,255,0.14), rgba(0,240,255,0.06));
+            color:#eafcff;font-weight:600;font-size:13px;margin-right:8px;border:1px solid rgba(255,255,255,0.03)
+        }
+
+        .skills {
+            display: flex;
+            flex-direction: column; /* empilha verticalmente */
+            gap: 10px;
+        }
+
+        .skill{background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));padding:8px 10px;border-radius:10px;font-size:13px;color:var(--muted);border:1px solid rgba(255,255,255,0.02)}
+
+        /* ---------- MAIN ---------- */
+        main .top{
+            display:flex;align-items:center;justify-content:space-between;gap:18px;
+        }
+        h1{font-size:26px;margin:0;letter-spacing:0.6px}
+        .role{color:var(--muted);margin-top:6px}
+
+        /* neon underline */
+        .neon {
+            display:inline-block;padding:6px 10px;border-radius:8px;
+            background:linear-gradient(90deg, rgba(138,92,255,0.07), rgba(0,240,255,0.03));
+            box-shadow:0 6px 30px rgba(138,92,255,0.04), 0 2px 12px rgba(0,240,255,0.02);
+            border:1px solid rgba(255,255,255,0.02);
+            color:#dffaff;font-weight:600
+        }
+
+        .panel{margin-top:18px;padding:16px;border-radius:12px;border:1px solid rgba(255,255,255,0.03);background:linear-gradient(180deg, rgba(255,255,255,0.015), transparent)}
+        .panel h3{margin:0 0 10px 0;color:var(--neon-purple)}
+        .muted{color:var(--muted);font-size:14px}
+
+        /* project cards with glow */
+        .projects{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:12px}
+        .project{padding:12px;border-radius:10px;background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));border:1px solid rgba(255,255,255,0.02);box-shadow:0 8px 30px rgba(0,0,0,0.45)}
+        .project strong{color:#eafcff}
+
+        /* futuristic timeline */
+        .timeline{border-left:2px dashed rgba(255,255,255,0.03);padding-left:16px}
+        .timeline-item{position:relative;padding:10px 0}
+        .timeline-item::before{
+            content:"";position:absolute;left:-11px;top:12px;width:8px;height:8px;border-radius:50%;
+            background:linear-gradient(90deg,var(--neon-cyan),var(--neon-purple));
+            box-shadow:0 0 18px rgba(0,240,255,0.14), 0 0 8px rgba(138,92,255,0.12)
+        }
+
+        /* ---------- BACKGROUND GRID & ANIM ---------- */
+        .bg-grid{
+            position:fixed;inset:0;pointer-events:none;z-index:0;
+            background-image:
+                    linear-gradient(transparent 95%, rgba(255,255,255,0.01) 96%),
+                    linear-gradient(90deg, transparent 95%, rgba(255,255,255,0.01) 96%);
+            background-size:100px 100px, 100px 100px;
+            mix-blend-mode:overlay;opacity:0.5;transform:translateZ(0);
+            animation: drift 20s linear infinite;
+        }
+        @keyframes drift{0%{transform:translateY(0) translateX(0)}50%{transform:translateY(-40px) translateX(20px)}100%{transform:translateY(0) translateX(0)}}
+
+        /* ---------- BUTTONS ---------- */
+        .cta{
+            display:inline-flex;gap:10px;align-items:center;padding:10px 14px;border-radius:10px;border:1px solid rgba(255,255,255,0.03);
+            background:linear-gradient(90deg, rgb(255, 255, 255), rgb(255, 255, 255));
+            color:#001; font-weight:700; cursor:pointer;
+            box-shadow:0 8px 30px rgba(0,0,0,0.5), 0 0 18px rgba(0,240,255,0.04);
+        }
+        .cta svg{filter:drop-shadow(0 6px 16px rgba(0,240,255,0.06))}
+
+        /* small responsive tweaks */
+        @media(max-width:480px){
+            .photo{width:180px;height:230px}
+            .avatar img{height:100%}
+        }
+    </style>
+</head>
+<body>
+<div class="bg-grid" aria-hidden="true"></div>
+
+<div class="wrap">
+    <div class="grid">
+
+        <!-- SIDEBAR -->
+        <aside class="card" style="z-index:2">
+            <div style="text-align:center">
+                <div class="photo" title="Foto 3x4">
+                    <div style="text-align:center">
+                        <img src="Photo-3x4.jpg" alt="Foto 3x4" class="photo">
+                    </div>
+
+                    <!-- Coloque sua foto com nome exactly 'photo-3x4.png' na mesma pasta -->
+
+                    </a>
+
+                </div>
+            </div>
+
+            <div style="margin-top:20px;text-align:center">
+                <h2 style="margin:6px 0 0 0">Gustavo Wacker</h2>
+                <div class="muted">Engenharia da Computação — Unifecaf</div>
+                <div style="margin-top:15px">
+                    <span class="badge">Estudante </span>
+                    <span class="badge">Administração</span>
+                    <span class="badge"> Compras</span>
+                    <span class="badge"> Tecnologia</span>
+                </div>
+            </div>
+
+            <div class="contact" style="margin-top:16px">
+                <div class="line">📱 <div style="flex:1">(11) 94559-4853</div></div>
+                <div class="line">✉️ <div style="flex:1">gustavowacker48@gmail.com</div></div>
+                <div class="line">📍 <div style="flex:1">São Paulo</div></div>
+            </div>
+
+            <div style="margin-top:16px">
+                <h4>Skills</h4>
+                <div class="skills">
+                    <div class="skill">Java Básico</div>
+                    <div class="skill">Pacote Office Intermediário</div>
+                    <div class="skill">HTML Básico</div>
+                    <div class="skill">CSS Básico</div>
+                    <div class="skill"> Foco</div>
+                    <div class="skill">Disciplina</div>
+                    <div class="skill">Proatividade</div>
+                    <div class="skill">Organização</div>
+
+                </div>
+
+
+
+                    </svg>
+
+
+            </div>
+
+        </aside>
+
+        <!-- MAIN -->
+        <main style="z-index:2">
+            <div class="card" style="padding:20px 28px">
+                <div class="top">
+                    <div>
+                        <h1>Gustavo Maiorino Wacker</h1>
+                        <div class="role">Estudante de Engenharia da Computação — Futuro Engenheiro</div>
+                    </div>
+                    <div style="text-align:right">
+                        <div class="neon">Tecnologia •  Desenvolvimento</div>
+                        <div style="margin-top:8px;color:var(--muted);font-size:13px">Atualizado: 2025</div>
+                    </div>
+                </div>
+
+                <div class="panel" style="margin-top:18px">
+                    <h3>Objetivo</h3>
+                    <p class="muted"> Busco oportunidade na área de tecnologia para atuar no desenvolvimento de software e na modelagem de dados, aplicando conhecimentos em lógica de programação, Java, CSS, HTML,  e análise de requisitos. Tenho foco em aprender novas tecnologias, colaborar com equipe e participar de projetos que envolvam automação, integração de sistemas e melhoria contínua de processos. Meu objetivo é evoluir tecnicamente e contribuir para soluções robustas, escaláveis e alinhadas às necessidades da empresa.  </p>
+                </div>
+
+                <div class="panel" style="display:flex;gap:18px;margin-top:16px;flex-wrap:wrap">
+                    <div style="flex:1;min-width:260px">
+                        <h3 style="margin-bottom:10px;color:var(--neon-cyan)">Experiência</h3>
+                        <div class="timeline">
+                            <div class="timeline-item">
+                                <div><strong>Marine Vidros</strong> — Auxiliar Administrativo</div>
+                                <div class="muted">Jun 2024 — Abr 2025</div>
+                                <div class="muted">Organização de custos, montagem de cronograma e vendas internas.</div>
+
+                               <div><strong> Glazzia Portas de Banho </strong> - Comprador</div>
+                                <div class="muted"> Setembro 2025 - Dezembro 2025</div>
+                                <div class="muted"> Atuava na área de compras, auxiliei na implementação de sistema da empresa, auxiliava no recebimento das entregas de materiais..</div>
+
+                            </div>
+                        </div>
+                    </div>
+
+                    <div style="width:360px;min-width:230px">
+                        <h3 style="color:var(--neon-purple)">Formação</h3>
+                        <div class="muted"><strong>Engenharia da Computação</strong> — Unifecaf (2024–2028)</div>
+                        <div class="muted" style="margin-top:8px">Ensino Médio — Completo</div>
+                    </div>
+                </div>
+
+                <div class="panel" style="margin-top:16px">
+                    <h3>Projetos & Atividades</h3>
+                    <div class="projects" style="margin-top:10px">
+                        <div class="project">
+                            <strong>Projeto Acadêmico — Modelagem de Dados</strong>
+                            <div class="muted">Criação de esquemas e relatórios; uso de BRModelo e SQL para validação.</div>
+                        </div>
+                        <div class="project">
+                            <strong>Gestão Interna — Marine Vidros</strong>
+                            <div class="muted">Rotinas administrativas, cronogramas e controle de custos.</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div style="margin-top:16px;display:flex;justify-content:space-between;flex-wrap:wrap;gap:12px">
+                    <div class="muted">Idiomas: Português (nativo) </div>
+                    <div style="display:flex;gap:8px">
+                        <a class="cta" href="https://github.com/Gustavo499-max?tab=repositories" target="_blank" rel="noreferrer">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" aria-hidden><path d="M12 .5C5.73.5.5 5.73.5 12c0 5.08 3.29 9.38 7.86 10.9.58.11.79-.25.79-.56 0-.28-.01-1.02-.02-2-3.2.7-3.88-1.54-3.88-1.54-.53-1.35-1.3-1.71-1.3-1.71-1.06-.72.08-.71.08-.71 1.18.08 1.8 1.21 1.8 1.21 1.04 1.77 2.73 1.26 3.4.96.11-.75.41-1.26.75-1.55-2.56-.29-5.26-1.28-5.26-5.69 0-1.26.45-2.29 1.2-3.1-.12-.3-.52-1.52.11-3.16 0 0 .98-.31 3.2 1.18a11.17 11.17 0 0 1 2.92-.39c.99.01 1.99.13 2.92.39 2.22-1.49 3.2-1.18 3.2-1.18.63 1.64.23 2.86.11 3.16.75.81 1.2 1.84 1.2 3.1 0 4.42-2.71 5.4-5.29 5.68.42.36.8 1.08.8 2.18 0 1.58-.01 2.85-.01 3.24 0 .31.21.68.8.56A10.51 10.51 0 0 0 23.5 12C23.5 5.73 18.27.5 12 .5z" fill="#001"/></svg>
+                            GitHub
+                        </a>
+                        <a class="cta"
+                           href="https://www.linkedin.com/in/gustavo-wacker-796429313?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=ios_app"
+                           target="_blank">
+                            LinkedIn
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" aria-hidden><path d="M4.98 3.5A2.5 2.5 0 1 0 4.98 8.5 2.5 2.5 0 0 0 4.98 3.5zM3 9h4v12H3zM11 9h3.7v1.7h.1c.5-.95 1.8-1.95 3.7-1.95 3.96 0 4.7 2.6 4.7 5.98V21H19v-5.4c0-1.28 0-2.92-1.78-2.92-1.78 0-2.05 1.4-2.05 2.82V21H11z" fill="#001"/></svg>
+                        </a>
+
+
+                        </a>
+                    </div>
+                </div>
+
+                <div style="margin-top:18px" class="muted">© 2025 Gustavo Wacker </div>
+            </div>
+        </main>
+    </div>
+</div>
+
+<script>
+    function downloadPDF(){
+        // placeholder: baixar o PDF original se tiver um link
+        alert('Se tiver um PDF do currículo, coloque aqui o link ou peça para eu gerar o PDF automaticamente.');
+    }
+    function openLinkedIn(e){
+        e.preventDefault();
+        window.open('https://www.linkedin.com/', '_blank');
+    }
+</script>
+</body>
+</html>
